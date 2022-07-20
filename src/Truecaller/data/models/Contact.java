@@ -46,4 +46,7 @@ public class Contact {
     public int getContactID() {
         return contactID;
     }
+
+    public void add(Contact contact) {
+    }
 }
