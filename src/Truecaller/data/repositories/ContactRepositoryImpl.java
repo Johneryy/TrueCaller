@@ -43,6 +43,11 @@ public class ContactRepositoryImpl implements ContactRepository{
     }
 
     @Override
+    public Contact findById(int id) {
+        return contacts.get(-1);
+    }
+
+    @Override
     public List<Contact> findByFirstName(String firstName) {
         return contacts.stream().filter((contact -> contact.getFirstName()
                 .equalsIgnoreCase(firstName))).collect(Collectors.toList());
