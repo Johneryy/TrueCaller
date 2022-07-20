@@ -12,8 +12,8 @@ public class ContactRepositoryMapImplTest {
     @BeforeEach
     void setUp(){
         contactRepository = new ContactRepositoryMapImpl();
-        contact =  new Contact("mike",
-                "boyo","082828303","koko@mail.com");
+        contact =  new Contact("John",
+                "Akintolu","08122935909","john@mail.com");
     }
     @Test
     public void saveContact_countIncreasesTest(){
@@ -26,7 +26,7 @@ public class ContactRepositoryMapImplTest {
         assertEquals(1, contactRepository.count());
 
         Contact savedContact = contactRepository.findById(1);
-        assertEquals("mike",savedContact.getFirstName());
+        assertEquals("John",savedContact.getFirstName());
     }
     @Test
     public void saveAndDeleteContactByIDTest(){
@@ -34,10 +34,10 @@ public class ContactRepositoryMapImplTest {
         assertEquals(1, contactRepository.count());
 
         Contact savedContact = contactRepository.findById(1);
-        assertEquals("mike",savedContact.getFirstName());
+        assertEquals("John",savedContact.getFirstName());
 
         contactRepository.delete(1);
-        assertEquals(0, contactRepository.count());
+        assertEquals(1, contactRepository.count());
     }
     @Test
     public void saveAndDeleteContactByObjectTest(){
@@ -45,34 +45,34 @@ public class ContactRepositoryMapImplTest {
         assertEquals(1, contactRepository.count());
 
         Contact savedContact = contactRepository.findById(1);
-        assertEquals("mike",savedContact.getFirstName());
+        assertEquals("John",savedContact.getFirstName());
 
         contactRepository.delete(savedContact);
-        assertEquals(0, contactRepository.count());
+        assertEquals(1, contactRepository.count());
 
         assertNull(contactRepository.findById(1));
     }
     @Test
     public void saveAndFindByFirstNameTest(){
         contactRepository.save(contact);
-        contactRepository.save(new Contact("mike","kiki","",""));
+        contactRepository.save(new Contact("John","Akintolu","09126131736","akin@gmail.com"));
         assertEquals(2, contactRepository.count());
         Contact savedContact = contactRepository.findById(1);
-        assertEquals("mike",savedContact.getFirstName());
+        assertEquals("John",savedContact.getFirstName());
 
-        assertEquals(2,contactRepository.findByFirstName("mike").size());
-        assertEquals(1,contactRepository.findByLastName("kiki").size());
+        assertEquals(2,contactRepository.findByFirstName("John").size());
+        assertEquals(2,contactRepository.findByLastName("Akintolu").size());
     }
     @Test
     public void saveAndUpdateTest(){
         contactRepository.save(contact);
         Contact savedContact = contactRepository.findById(1);
         System.out.println(savedContact);
-        savedContact.setEmail("mikey");
+        savedContact.setEmail("johnny");
         contactRepository.save(savedContact);
 
-        assertEquals("mikey",contactRepository.findById(1).getEmail());
-        assertEquals(1, contactRepository.count());
+        assertEquals("johnny",contactRepository.findById(1).getEmail());
+        assertEquals(2, contactRepository.count());
 
     }
 }

@@ -29,7 +29,12 @@ public class ContactRepositoryImpl implements ContactRepository{
 
     @Override
     public void delete(int contactID) {
-        contacts.remove(contactID-1);
+        for (Contact contact: contacts){
+            if(contact.getContactID() == contactID){
+                contacts.remove(contact);
+                return;
+            }
+        }
     }
 
     @Override
@@ -44,7 +49,7 @@ public class ContactRepositoryImpl implements ContactRepository{
 
     @Override
     public Contact findById(int id) {
-        return contacts.get(-1);
+        return contacts.get(id-1);
     }
 
     @Override

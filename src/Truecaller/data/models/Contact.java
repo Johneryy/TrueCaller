@@ -2,15 +2,15 @@ package Truecaller.data.models;
 
 
 public class Contact {
-    public int getId() {
-        return id;
+    public int getContactID() {
+        return contactID;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setContactID(int id) {
+        this.contactID = contactID;
     }
 
-    private int id;
+    private int contactID;
     private String firstName;
     private String lastName;
     private String phoneNumber;
