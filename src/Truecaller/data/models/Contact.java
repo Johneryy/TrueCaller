@@ -1,11 +1,26 @@
 package Truecaller.data.models;
 
+
 public class Contact {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    private int id;
     private String firstName;
     private String lastName;
-    private int contactID;
-    private String emailAddress;
     private String phoneNumber;
+    private String email;
+    public Contact(String firstName, String lastName, String phoneNumber, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -23,14 +38,6 @@ public class Contact {
         this.lastName = lastName;
     }
 
-    public String getEmailAddress() {
-        return emailAddress;
-    }
-
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
-    }
-
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -39,14 +46,11 @@ public class Contact {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setContactID(int contactID) {
-        this.contactID = contactID;
+    public String getEmail() {
+        return email;
     }
 
-    public int getContactID() {
-        return contactID;
-    }
-
-    public void add(Contact contact) {
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

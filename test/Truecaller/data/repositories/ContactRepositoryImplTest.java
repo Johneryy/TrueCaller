@@ -1,34 +1,29 @@
 package Truecaller.data.repositories;
 
 import Truecaller.data.models.Contact;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ContactRepositoryImplTest {
-    @Test
-    public void saveContact_countIncreasesTest() {
-        ContactRepository contactRepository = new ContactRepositoryImpl();
-        Contact contact = new Contact();
-        contact.setPhoneNumber("08122935909");
-        contact.setFirstName("John");
-        contact.setLastName("Akintolu");
-        contact.setEmailAddress("johneryakintolu@gmail.com");
-
-        contactRepository.save(contact);
-        assertEquals(1,contactRepository.count());
+class ContactRepositoryListImplTest {
+    ContactRepository contactRepository;
+    Contact contact;
+    @BeforeEach
+    void setUp(){
+        contactRepository = new ContactRepositoryImpl();
+        contact =  new Contact("mike",
+                "boyo","082828303","koko@mail.com");
     }
     @Test
-    public void saveContact_findByIDTest() {
-        ContactRepository contactRepository = new ContactRepositoryImpl();
-        Contact contact = new Contact();
-        contact.setPhoneNumber("08122935909");
-        contact.setFirstName("John");
-        contact.setLastName("Akintolu");
-        contact.setEmailAddress("johneryakintolu@gmail.com");
+    public void saveAndUpdateTest(){
         contactRepository.save(contact);
-        assertEquals(1,contactRepository.count());
+        Contact savedContact = contactRepository.findById(1);
+        savedContact.setEmail("mikey");
+        contactRepository.save(savedContact);
 
-        Contact savedContact = contactRepository.findByID(1);
-        assertEquals("John", savedContact.getFirstName());
+        assertEquals("mikey",contactRepository.findById(1).getEmail());
+        assertEquals(1, contactRepository.count());
+
     }
 }
